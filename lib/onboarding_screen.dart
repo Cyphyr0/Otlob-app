@@ -1,144 +1,111 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
-class OnboardingScreen extends StatefulWidget {
+class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
 
   @override
-  State<OnboardingScreen> createState() => _OnboardingScreenState();
-}
-
-class _OnboardingScreenState extends State<OnboardingScreen> {
-  final PageController _pageController = PageController();
-  int _currentPage = 0;
-
-  final List<Widget> _pages = [
-    const OnboardingPage(
-      title: "Welcome to Otlob",
-      description: "Your one-stop solution for all your needs.",
-      child: Placeholder(fallbackHeight: 300, fallbackWidth: 300),
-    ),
-    const OnboardingPage(
-      title: "Fast & Reliable Delivery",
-      description: "Get your orders delivered to your doorstep in no time.",
-      child: Placeholder(fallbackHeight: 300, fallbackWidth: 300),
-    ),
-    const OnboardingPage(
-      title: "24/7 Customer Support",
-      description: "Our team is always here to help you with any queries.",
-      child: Placeholder(fallbackHeight: 300, fallbackWidth: 300),
-    ),
-  ];
-
-  @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-
+    final theme = Theme.of(context);
     return Scaffold(
       body: Column(
         children: [
           Expanded(
-            child: PageView(
-              controller: _pageController,
-              children: _pages,
-              onPageChanged: (int page) {
-                setState(() {
-                  _currentPage = page;
-                });
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
-              children: [
-                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(
-                    _pages.length,
-                    (index) => AnimatedContainer(
-                      duration: const Duration(milliseconds: 300),
-                      margin: const EdgeInsets.symmetric(horizontal: 4.0),
-                      height: 8.0,
-                      width: _currentPage == index ? 24.0 : 8.0,
-                      decoration: BoxDecoration(
-                        color: _currentPage == index
-                            ? Theme.of(context).colorScheme.primary
-                            : Colors.grey,
-                        borderRadius: BorderRadius.circular(12),
+            flex: 3,
+            child: Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/background.png'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.transparent,
+                      theme.scaffoldBackgroundColor,
+                    ],
+                  ),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      'Otlob',
+                      style: theme.textTheme.displayLarge?.copyWith(
+                        color: theme.colorScheme.onSurface,
                       ),
                     ),
-                  ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Your next meal, delivered.',
+                      style: theme.textTheme.titleLarge?.copyWith(
+                        color: theme.colorScheme.onSurface.withOpacity(0.7),
+                      ),
+                    ),
+                    const SizedBox(height: 32),
+                  ],
                 ),
-                const SizedBox(height: 50),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      if (_currentPage == _pages.length - 1) {
-                         context.go('/auth');
-                      } else {
-                        _pageController.nextPage(
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.ease,
-                        );
-                      }
-                    },
-                    child: Text(_currentPage == _pages.length - 1 ? "Get Started" : "Next"),
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton.icon(
+                    onPressed: () {},
+                    icon: SvgPicture.asset('assets/logos/google.svg', height: 24),
+                    label: const Text('Continue with Google'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: theme.colorScheme.surface,
+                      foregroundColor: theme.colorScheme.onSurface,
+                      minimumSize: const Size(double.infinity, 56),
+                    ),
                   ),
-                ),
-                const SizedBox(height: 10),
-                 if (_currentPage != _pages.length - 1)
-                TextButton(
-                  onPressed: () => context.go('/auth'),
-                  child: const Text("Skip"),
-                ) else const SizedBox(height: 48),
-              ],
+                  const SizedBox(height: 16),
+                  ElevatedButton.icon(
+                    onPressed: () {},
+                    icon: SvgPicture.asset('assets/logos/apple.svg', height: 24, colorFilter: ColorFilter.mode(theme.colorScheme.onSurface, BlendMode.srcIn)),
+                    label: const Text('Continue with Apple'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: theme.colorScheme.surface,
+                      foregroundColor: theme.colorScheme.onSurface,
+                      minimumSize: const Size(double.infinity, 56),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  const TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Email address',
+                    ),
+                  ),
+                  const Spacer(),
+                  ElevatedButton.icon(
+                    onPressed: () => context.go('/home'),
+                    icon: const Icon(Icons.search),
+                    label: const Text('Search Nearby'),
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: const Size(double.infinity, 56),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  TextButton(
+                    onPressed: () => context.go('/auth'),
+                    child: const Text('Already have an account? Log In'),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class OnboardingPage extends StatelessWidget {
-  final String title;
-  final String description;
-  final Widget child;
-
-  const OnboardingPage({
-    super.key,
-    required this.title,
-    required this.description,
-    required this.child,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-    return SingleChildScrollView(
-      child: Container(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const SizedBox(height: 50),
-            child,
-            const SizedBox(height: 50),
-            Text(
-              title,
-              style: textTheme.displaySmall?.copyWith(fontFamily: 'Oswald', color: Theme.of(context).colorScheme.primary ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 20),
-            Text(
-              description,
-              style: textTheme.bodyLarge?.copyWith(color: Colors.grey.shade600),
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
       ),
     );
   }

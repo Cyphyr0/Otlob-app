@@ -6,7 +6,7 @@ import 'package:myapp/onboarding_screen.dart';
 
 
 final GoRouter router = GoRouter(
-  initialLocation: '/home',
+  initialLocation: '/',
   routes: <RouteBase>[
     GoRoute(
       path: '/',
