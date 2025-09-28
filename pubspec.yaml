@@ -24,9 +24,5 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/logos/
     - assets/fonts/
-
-  fonts:
-    - family: Tutano
-      fonts:
-        - asset: assets/fonts/tutano_cc_v2.ttf
