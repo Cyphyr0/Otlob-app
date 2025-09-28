@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ThemeProvider with ChangeNotifier {
   ThemeMode _themeMode = ThemeMode.system;
@@ -15,22 +14,22 @@ class ThemeProvider with ChangeNotifier {
 class AppTheme {
   static const Color _primarySeedColor = Color(0xFF673AB7);
 
-  static final TextTheme _appTextTheme = TextTheme(
-    displayLarge: GoogleFonts.oswald(fontSize: 57, fontWeight: FontWeight.bold),
-    displayMedium: GoogleFonts.oswald(fontSize: 45, fontWeight: FontWeight.w600),
-    displaySmall: GoogleFonts.oswald(fontSize: 36, fontWeight: FontWeight.w600),
-    headlineLarge: GoogleFonts.roboto(fontSize: 32, fontWeight: FontWeight.bold),
-    headlineMedium: GoogleFonts.roboto(fontSize: 28, fontWeight: FontWeight.bold),
-    headlineSmall: GoogleFonts.roboto(fontSize: 24, fontWeight: FontWeight.w500),
-    titleLarge: GoogleFonts.roboto(fontSize: 22, fontWeight: FontWeight.w500),
-    titleMedium: GoogleFonts.roboto(fontSize: 16, fontWeight: FontWeight.w500, letterSpacing: 0.15),
-    titleSmall: GoogleFonts.roboto(fontSize: 14, fontWeight: FontWeight.w500, letterSpacing: 0.1),
-    bodyLarge: GoogleFonts.roboto(fontSize: 16, fontWeight: FontWeight.w400, letterSpacing: 0.5),
-    bodyMedium: GoogleFonts.roboto(fontSize: 14, fontWeight: FontWeight.w400, letterSpacing: 0.25),
-    bodySmall: GoogleFonts.roboto(fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 0.4),
-    labelLarge: GoogleFonts.roboto(fontSize: 14, fontWeight: FontWeight.w500, letterSpacing: 1.25),
-    labelMedium: GoogleFonts.roboto(fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 0.5),
-    labelSmall: GoogleFonts.roboto(fontSize: 10, fontWeight: FontWeight.w400, letterSpacing: 1.5),
+  static const TextTheme _appTextTheme = TextTheme(
+    displayLarge: TextStyle(fontFamily: 'Tutano', fontSize: 57, fontWeight: FontWeight.bold),
+    displayMedium: TextStyle(fontFamily: 'Tutano', fontSize: 45, fontWeight: FontWeight.w600),
+    displaySmall: TextStyle(fontFamily: 'Tutano', fontSize: 36, fontWeight: FontWeight.w600),
+    headlineLarge: TextStyle(fontFamily: 'Tutano', fontSize: 32, fontWeight: FontWeight.bold),
+    headlineMedium: TextStyle(fontFamily: 'Tutano', fontSize: 28, fontWeight: FontWeight.bold),
+    headlineSmall: TextStyle(fontFamily: 'Tutano', fontSize: 24, fontWeight: FontWeight.w500),
+    titleLarge: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+    titleMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, letterSpacing: 0.15),
+    titleSmall: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, letterSpacing: 0.1),
+    bodyLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, letterSpacing: 0.5),
+    bodyMedium: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, letterSpacing: 0.25),
+    bodySmall: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 0.4),
+    labelLarge: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, letterSpacing: 1.25),
+    labelMedium: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 0.5),
+    labelSmall: TextStyle(fontSize: 10, fontWeight: FontWeight.w400, letterSpacing: 1.5),
   );
 
   static final ThemeData lightTheme = ThemeData(

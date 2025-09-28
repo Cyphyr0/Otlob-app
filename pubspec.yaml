@@ -28,3 +28,8 @@ flutter:
     - assets/logos/
     - assets/fonts/
     - assets/sounds/
+
+  fonts:
+    - family: Tutano
+      fonts:
+        - asset: assets/fonts/tutano_cc_v2.ttf
